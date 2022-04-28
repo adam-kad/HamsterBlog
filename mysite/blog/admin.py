@@ -13,4 +13,3 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ('status', 'publish')
 
 
-
