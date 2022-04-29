@@ -10,7 +10,7 @@ urlpatterns = [
     path('', views.PostListView.as_view(), name='post_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
         views.post_detail, name='post_detail'),
-    path('about/', views.about, name='about'),
+    path('about/', views.about_post_list, name='about_post_list'),
     path('post/', views.post),
     path('contact/', views.contact),
 ]

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import About, Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 
@@ -34,9 +34,14 @@ def post_detail(request, year, month, day, post):
     return render(request, 'blog/post/detail.html', {'post': post})
 
 
+def about_post_list(request):
+    about_posts = About.published.all()
+    return render(request, 'blog/about-post/about_list.html', {'about_posts': about_posts})
+
+
 
 def about(request):
-    return render(request, 'blog/about.html')
+    return render(request, 'blog/about-post/about_list.html')
 
 
 def post(request):
@@ -44,3 +49,5 @@ def post(request):
 
 def contact(request):
     return render(request, 'blog/contact.html')
+
+

@@ -9,6 +9,11 @@ class PublishedManager(models.Manager):
         return super().get_queryset().filter(status='published')
 
 
+class AboutPublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(about_status='published')
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -37,4 +42,27 @@ class Post(models.Model):
         return reverse('blog:post_detail', args=[self.publish.year,
                                                  self.publish.month,
                                                  self.publish.day, self.slug])
+
+
+
+class About(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+
+    about_title = models.CharField(max_length=250)
+    about_body = models.TextField()
+    about_publish = models.DateTimeField(default=timezone.now)
+    about_status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+
+
+    def __str__(self):
+        return self.about_title
+    
+
+    objects = models.Manager()          # Менеджер по умолчанию.
+    published = AboutPublishedManager()      # Наш новый менеджер.
+
+    
 

@@ -1,0 +1,12 @@
+{% extends "blog/about.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+
+    {% for post in about_posts %}
+        
+        {{ post.about_body }}
+
+    {% endfor %}
+{% endblock %}
