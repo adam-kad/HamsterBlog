@@ -12,5 +12,6 @@ urlpatterns = [
         views.post_detail, name='post_detail'),
     path('about/', views.about_post_list, name='about_post_list'),
     path('post/', views.post),
-    path('contact/', views.contact),
+    path('contact/', views.contact_view, name='contact'),
+    path('success/', views.success_view, name='success'),
 ]

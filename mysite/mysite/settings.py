@@ -125,3 +125,21 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+# почты для получения писем
+RECIPIENTS_EMAIL = ['mgm.kadiev@gmail.com']
+# почта отправителя по умолчанию, та что верифицирована
+DEFAULT_FROM_EMAIL = 'vectorik.blog@gmail.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vectorik.blog@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'Iq_11515515'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+

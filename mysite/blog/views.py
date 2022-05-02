@@ -1,8 +1,41 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import About, Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
+from django.core.mail import send_mail, BadHeaderError
+from .forms import ContactForm
+from mysite.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
+
+
+
+def contact_view(request):
+    # если метод GET, вернем форму
+    if request.method == 'GET':
+        form = ContactForm()
+    elif request.method == 'POST':
+        # если метод POST, проверим форму и отправим письмо
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            your_name = form.cleaned_data['your_name']
+            try:
+                send_mail(f'Номер: {subject} Эл.адрес {from_email} Имя: {your_name}', message,
+                          DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL)
+            except BadHeaderError:
+                return HttpResponse('Ошибка в теме письма.')
+            return redirect('/success')
+    else:
+        return HttpResponse('Неверный запрос.')
+    return render(request, "blog/contact.html", {'form': form})
+
+
+
+def success_view(request):
+    return HttpResponse('Приняли! Спасибо за вашу заявку.')
+
 
 
 def post_list(request):
@@ -47,7 +80,7 @@ def about(request):
 def post(request):
     return render(request, 'blog/post.html')
 
-def contact(request):
-    return render(request, 'blog/contact.html')
+#def contact(request):
+#    return render(request, 'blog/contact.html')
 
 
