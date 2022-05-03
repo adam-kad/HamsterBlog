@@ -1,3 +1,4 @@
+from tokenize import Number
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import About, Post
@@ -17,12 +18,12 @@ def contact_view(request):
         # если метод POST, проверим форму и отправим письмо
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = form.cleaned_data['subject']
+            number = form.cleaned_data['number']
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             your_name = form.cleaned_data['your_name']
             try:
-                send_mail(f'Номер: {subject} Эл.адрес {from_email} Имя: {your_name}', message,
+                send_mail(f'Номер: {number} Эл.адрес {from_email} Имя: {your_name}', message,
                           DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL)
             except BadHeaderError:
                 return HttpResponse('Ошибка в теме письма.')
@@ -34,7 +35,7 @@ def contact_view(request):
 
 
 def success_view(request):
-    return HttpResponse('Приняли! Спасибо за вашу заявку.')
+    return render(request, "blog/contact.html")
 
 
 

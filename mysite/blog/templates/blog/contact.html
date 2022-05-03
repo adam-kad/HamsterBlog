@@ -62,14 +62,36 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
+                            
+
                             <form id="contactForm" method="post" data-sb-form-api-token="API_TOKEN">
                                 {% csrf_token %}
-                                {{ form.as_p }}
-                                <div class="form-actions form-group ">
-                                    <button type="submit"  class="form-control btn btn-success">Отправить</button>
+
+                                <p><label for="id_your_name">Name:</label>
+                                    <input class="form-control" type="text" name="your_name" placeholder="Enter your name..." id="id_your_name" /></p>
+
+                                <p><label for="id_number">Number:</label>
+                                    <input class="form-control" type="text" name="number" placeholder="Enter your phone number..." id="id_number" data-sb-feedback="phone:required" /></p>
+                                
+                                <p><label for="id_from_email">Email:</label>
+                                    <input class="form-control" type="email" name="from_email" placeholder="Enter your email..." id="id_from_email" data-sb-validations="required,email" /></p>
+                                
+                                <p><label for="id_message">Message:</label>
+                                    <input class="form-control" type="text" name="message" placeholder="Enter your message here..." id="id_message" data-sb-feedback="message:required" /></p>
+
+
+
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        <br />
+                                    </div>
                                 </div>
-                            </form>
-                            
+
+                                <div class="form-actions form-group ">
+                                    <button type="submit" class="form-control btn btn-success" id="submitButton" >Send</button>
+                                </div>
+                                
                         </div>
                     </div>
                 </div>
