@@ -27,17 +27,12 @@
 > cd ../CleanBlog
 
 
-3.Запустить виртуальную среду:
-
-> CleanBlog$ source venv/bin/activate
-
-
-4.Перейти в наше приложение mysite внутри папки CleanBlog:
+3.Перейти в наше приложение mysite внутри папки CleanBlog:
 
 > CleanBlog$ cd mysite
 
 
-5.Запустить сервер:
+4.Запустить сервер:
 
 > mysite$ python manage.py runsrver
 
