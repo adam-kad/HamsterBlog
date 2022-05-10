@@ -5,11 +5,7 @@
 ## Для начала необходимо скачать зависимости:
 
 >
-    pip install asgiref==3.5.0
->
-    pip install Django==4.0.4
->
-    pip install sqlparse==0.4.2
+    pipenv install
   
 
 
