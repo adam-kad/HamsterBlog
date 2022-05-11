@@ -1,1 +1,1 @@
-web: gunicorn CleanBlog/mysite.wsgi --log-file -
+web: gunicorn mysite.wsgi --log-file -
