@@ -7,7 +7,6 @@ name = "pypi"
 asgiref = "==3.5.0"
 sqlparse = "==0.4.2"
 Django = "==4.0.4"
-gunicorn = "==19.9.0"
 
 [dev-packages]
 
