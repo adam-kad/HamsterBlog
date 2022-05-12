@@ -1,4 +1,4 @@
-# CleanBlog
+# Hamster Blog
 *Блог на основе Django*
 
 ------------
