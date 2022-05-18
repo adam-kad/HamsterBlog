@@ -15,17 +15,17 @@
 
 1.Клонировать/Скачать репозиторий:
 
-     git clone https://github.com/CleanBlog
+     git clone https://github.com/HamsterBlog
 
 
 2.Перейти в директорию со скачанным репозиторием:
 
-> cd ../CleanBlog
+> cd ../HamsterBlog
 
 
 3.Перейти в наше приложение mysite внутри папки CleanBlog:
 
-> CleanBlog$ cd mysite
+> HamsterBlog$ cd mysite
 
 
 4.Запустить сервер:
