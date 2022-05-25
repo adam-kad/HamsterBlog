@@ -8,6 +8,7 @@ from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm
 from mysite.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
 from taggit.models import Tag
+from django.db.models import Count
 
 
 
@@ -72,7 +73,15 @@ def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post, status='published', publish__year=year,
                              publish__month=month, publish__day=day)
 
-    return render(request, 'blog/post/detail.html', {'post': post})
+    # Формирование списка похожих статей.
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_ids)\
+                                    .exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags'))\
+                                    .order_by('-same_tags','-publish')[:4]
+
+
+    return render(request, 'blog/post/detail.html', {'post': post, 'similar_posts': similar_posts})
 
 
 def about_post_list(request):
